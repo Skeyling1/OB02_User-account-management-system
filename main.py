@@ -4,17 +4,35 @@
 
 #Класс `User*: Этот класс должен инкапсулировать данные о пользователе: ID, имя и уровень доступа ('user' для обычных сотрудников).
 class User:
-    def __init__(self, staff_id, name, access_level='user'):
-        self.staff_id = staff_id
-        self.name = name
-        self.access_level = access_level
+    def __init__(self, staff_id, name):
+        self.__staff_id = staff_id
+        self.__name = name
+        self.__access_level = 'user'
 
-#Класс Admin: Этот класс должен наследоваться от класса User. Добавь дополнительный атрибут уровня доступа, специфичный для администраторов ('admin'). Класс должен также содержать методы add_user и remove_user, которые позволяют добавлять и удалять пользователей из списка (представь, что это просто список экземпляров User).
+
+#Класс Admin: Этот класс должен наследоваться от класса User.
+# Добавь дополнительный атрибут уровня доступа, специфичный для администраторов ('admin').
+# Класс должен также содержать методы add_user и remove_user, которые позволяют добавлять и удалять пользователей из списка
+# (представь, что это просто список экземпляров User).
 class Admin(User):
-    def __init__(self, staff_id, name, access_level='admin'):
-        super(Admin, self).__init__(self, staff_id, name, access_level='admin')
+    def __init__(self, staff_id, name):
+        super(Admin, self).__init__(staff_id, name)
+        self.__access_level = 'admin'
+
+    def getter(self, users_object):
+        d = (users_object.__staff_id, users_object.__name, users_object.__access_level)
+        print(d)
 
 
 
 
-#Инкапсуляция данных: Убедись, что атрибуты классов защищены от прямого доступа и модификации снаружи. Предоставь доступ к необходимым атрибутам через методы (например, get и set методы).
+#Инкапсуляция данных: Убедись, что атрибуты классов защищены от прямого доступа и модификации снаружи.
+# Предоставь доступ к необходимым атрибутам через методы (например, get и set методы).
+
+user1 = User(1, "Derry")
+
+admin1 = Admin(77777777777, "Marie")
+
+admin1.getter(user1)
+
+#print(user1.__name)
